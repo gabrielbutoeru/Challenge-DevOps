@@ -25,3 +25,6 @@ Aprire il file csv con un editor di testo per poterne leggere il contenuto ed es
 $ export AWS_ACCESS_KEY_ID=VALORE PRESENTE NEL CSV
 $ export AWS_SECRET_ACCESS_KEY=VALORE PRESENTE NEL CSV
 $ export AWS_DEFAULT_REGION=eu-central-1
+
+
+Oltre a questo è ovviamente necessario aver installato anche Python, Ansible e Boto.
