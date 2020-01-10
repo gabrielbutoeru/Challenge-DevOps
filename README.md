@@ -28,3 +28,6 @@ $ export AWS_DEFAULT_REGION=eu-central-1
 
 
 Oltre a questo è ovviamente necessario aver installato anche Python, Ansible e Boto.
+
+Per l'esecuzione:
+ansible-playbook --private-key chiave.pem site.yml -vvv
