@@ -24,13 +24,3 @@ def test_svc(host, svc):
 
     assert service.is_running
     assert service.is_enabled
-
-
-@pytest.mark.parametrize('file, content', [
-  ("/lib/systemd/system/docker.service", "ExecStart=/usr/bin/dockerd -g /mnt/docker -H fd:// -H tcp://0.0.0.0:2376")
-])
-def test_files(host, file, content):
-    file = host.file(file)
-
-    assert file.exists
-    assert file.contains(content)
