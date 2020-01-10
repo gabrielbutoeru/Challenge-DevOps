@@ -43,4 +43,3 @@
 - name: Restart del docker-daemon
   command: systemctl restart docker.service
   become: yes
-
