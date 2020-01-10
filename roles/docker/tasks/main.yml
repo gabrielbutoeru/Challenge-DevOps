@@ -1,0 +1,46 @@
+- name: Installazione delle dipendenze
+  yum:
+   name:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+   state: latest
+
+- name: Aggiunta del repo docker
+  get_url:
+   url: https://download.docker.com/linux/centos/docker-ce.repo
+   dest: /etc/yum.repos.d/docker-ce.repo
+  become: yes
+
+- name: Installazione di Docker Community Edition
+  package:
+   name: docker-ce
+   state: latest
+  become: yes
+
+- name: Abilitazione del servizio docker
+  service:
+   name: docker
+   state: started
+   enabled: yes
+  become: yes
+
+- name: Stop del servizio docker
+  command: systemctl daemon-reload
+  become: yes
+
+- name: Riconfigurazione di Docker. Utilizzo di /mnt/docker ed esposizione delle API rest
+  replace:
+   path: /lib/systemd/system/docker.service
+   regexp: 'ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock'
+   replace: "ExecStart=/usr/bin/dockerd -g /mnt/docker -H fd:// -H tcp://0.0.0.0:2376"
+  become: yes
+
+- name: Reload degli unit-files
+  command: systemctl daemon-reload
+  become: yes
+
+- name: Restart del docker-daemon
+  command: systemctl restart docker.service
+  become: yes
+

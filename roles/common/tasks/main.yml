@@ -1,0 +1,19 @@
+- name: Aggiornamento cache
+  yum: update_cache=yes
+
+- name: Aggiornamento di tutti i pacchetti
+  yum:
+   name: '*'
+   state: latest
+
+- name: Creazione fs ext4 per /dev/xvdf
+  command: mkfs -t ext4 /dev/xvdf
+  become: yes
+
+- name: Creazione punto di mount e mount del fs
+  command: mkdir /mnt/docker
+  become: yes
+
+- name: Mount del fs
+  command: mount /dev/xvdf /mnt/docker
+  become: yes

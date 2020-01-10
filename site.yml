@@ -1,0 +1,15 @@
+- name: Creazione istanze EC2 CentOS 7
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  roles:
+    - ec2
+
+- name: Configurazione dell'ambiente docker
+  hosts: launched
+  become: True
+  remote_user: "{{ remote_user }}"
+  gather_facts: True
+  roles:
+    - common
+    - docker
