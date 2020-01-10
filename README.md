@@ -12,3 +12,16 @@ Una volta inserito un nome la chiave andrà scaricata e inserita nella cartella 
 
 Oltre a questo, sempre recandosi nella cartella radice del progetto, servirà dare:
 chmod 400 chiave.pem 
+
+
+Configurazione dell'ambiente.
+Access Key and Secret Access Key 
+
+Nella dashboardi di AWS recarsi in alto a destra. 
+Nome utente > My Security Credentials > Access keys (Access key ID and secret access key > Create new access key > Download New access key
+
+Aprire il file csv con un editor di testo per poterne leggere il contenuto ed eseguire i seguenti comandi
+
+$ export AWS_ACCESS_KEY_ID=VALORE PRESENTE NEL CSV
+$ export AWS_SECRET_ACCESS_KEY=VALORE PRESENTE NEL CSV
+$ export AWS_DEFAULT_REGION=eu-central-1
